@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-dom": "^19.2.5",
+    "react-native-web": "^0.21.2"
+  }
+}
