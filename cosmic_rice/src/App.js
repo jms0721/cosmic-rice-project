@@ -137,7 +137,7 @@ function App() {
               {/* 1. 로그인 화면 */}
               {modalType === 'auth' && (
                 <div className="auth-form">
-                  <div className="auth-logo">LOGIN</div>
+                  <div className="auth-logo" style={{textAlign:'center', fontSize:'24px', fontWeight:'bold', marginBottom:'20px'}}>LOGIN</div>
                   <input type="text" placeholder="아이디" />
                   <input type="password" placeholder="비밀번호" />
                   <button className="auth-submit-btn" onClick={handleLogin}>로그인 / 회원가입</button>
@@ -146,7 +146,7 @@ function App() {
 
               {/* 2. 마이페이지 */}
               {modalType === 'myPage' && (
-                <div className="mypage-full-container">
+                <div className="mypage-full-container" style={{height: '100%', display: 'flex', flexDirection: 'column'}}>
                   <div className="mypage-top-section">
                     <div className="profile-circle-large">{userInfo.profileImg}</div>
                     <div className="nickname-container">
@@ -178,22 +178,49 @@ function App() {
                 </div>
               )}
 
-              {/* 3. 포인트 상점 */}
+              {/* 3. 포인트 상점 (최종 업데이트 버전) */}
               {modalType === 'pointStore' && (
-                <div className="point-store-placeholder">
-                  <div className="current-point-display">내 포인트: {userInfo.point}P</div>
-                  <div className="store-items-dummy">
-                    <div className="dummy-item">포인트 상점 준비 중...</div>
+                <div className="ps-full-wrapper">
+                  <div className="ps-top-profile-section">
+                    <div className="ps-top-left-content">
+                      <div className="ps-main-photo">{userInfo.profileImg}</div>
+                      <div className="ps-main-nickname">닉네임: {userInfo.nickname}님</div>
+                    </div>
+                    <div className="ps-main-point-box">{userInfo.point.toLocaleString()} P</div>
+                  </div>
+
+                  <div className="ps-bottom-scroll-section">
+                    {[...Array(10)].map((_, i) => (
+                      <div key={i} className="ps-list-row-item">
+                        <div className="ps-item-left-group">
+                          <div className="ps-sub-photo">이미지</div>
+                          <div className="ps-sub-box">카테고리</div>
+                          <div className="ps-sub-box">아이템명</div>
+                          <div className="ps-sub-price-white">300 P</div>
+                        </div>
+                        <button 
+                          className="ps-buy-action-btn"
+                          onClick={() => {
+                            if (window.confirm("구매하시겠습니까?")) alert("구매 완료!");
+                          }}
+                        >
+                          구매
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
 
               {/* 4. 식당 상세 */}
               {modalType === 'restaurantDetail' && (
-                <div className="centered-text"><h3>{selectedItem}</h3><p>상세 정보입니다.</p></div>
+                <div className="centered-content" style={{flexDirection:'column'}}>
+                  <h3>{selectedItem}</h3>
+                  <p style={{marginTop:'10px'}}>상세 정보입니다.</p>
+                </div>
               )}
 
-              {/* 5. 커뮤니티 상세 (이전 코드로 복구된 부분) */}
+              {/* 5. 커뮤니티 상세 */}
               {modalType === 'communityDetail' && (
                 <div className="community-detail-layout">
                   <div className="post-main-content">
@@ -201,7 +228,7 @@ function App() {
                       <h2>{selectedItem}</h2>
                       <p className="post-meta">작성자: User123 | 2026-04-14</p>
                     </div>
-                    <hr />
+                    <hr style={{margin: '15px 0'}} />
                     <div className="post-body-text">
                       <p>작성된 글의 본문 내용이 상단에 위치합니다.</p>
                       <p>(선택된 항목: {selectedItem})</p>

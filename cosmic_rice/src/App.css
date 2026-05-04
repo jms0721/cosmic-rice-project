@@ -791,3 +791,105 @@
   cursor: pointer;
 }
 
+.ps-full-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.ps-top-profile-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #333;
+  border-radius: 15px;
+  padding: 20px 25px;
+}
+
+.ps-top-left-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ps-main-photo {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: #777; color: white;
+  display: flex; justify-content: center; align-items: center;
+  font-weight: bold;
+}
+
+.ps-main-nickname {
+  background: #777; color: white;
+  padding: 10px 25px; border-radius: 10px;
+  font-weight: bold;
+}
+
+.ps-main-point-box {
+  border: 2px solid #333;
+  padding: 10px 25px; border-radius: 10px;
+  font-weight: bold;
+}
+
+/* 하단 리스트 영역 */
+.ps-bottom-scroll-section {
+  flex: 1;
+  border: 2px solid #333;
+  border-radius: 15px;
+  padding: 10px 20px;
+  overflow-y: auto;
+}
+
+/* 리스트 한 줄 정렬 핵심 */
+.ps-list-row-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.ps-item-left-group {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* 사진, 닉네임, 아이템 사이 간격 */
+  flex: 1;
+}
+
+.ps-sub-photo {
+  width: 60px; height: 60px; border-radius: 50%;
+  border: 1px solid #ccc;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 12px; flex-shrink: 0;
+}
+
+.ps-sub-box {
+  background: #777; color: white;
+  padding: 10px; border-radius: 10px;
+  flex: 1;           /* 가이드라인 박스처럼 공간을 균등하게 차지 */
+  max-width: 120px;
+  text-align: center; font-weight: bold;
+}
+
+.ps-sub-price-white {
+  border: 2px solid #333;
+  padding: 10px; border-radius: 10px;
+  flex: 1;           /* 가격 박스도 균등하게 배치 */
+  max-width: 100px;
+  text-align: center; font-weight: bold;
+}
+
+.ps-buy-action-btn {
+  background: #2b9abf; color: white; border: none;
+  padding: 12px 25px; border-radius: 8px;
+  font-weight: bold; cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+/* 스크롤바 디자인 */
+.ps-bottom-scroll-section::-webkit-scrollbar { width: 8px; }
+.ps-bottom-scroll-section::-webkit-scrollbar-thumb {
+  background: #777; border-radius: 10px;
+}
