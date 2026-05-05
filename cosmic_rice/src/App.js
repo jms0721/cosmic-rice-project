@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-ffs
+
 function App() {
   const [modalType, setModalType] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
