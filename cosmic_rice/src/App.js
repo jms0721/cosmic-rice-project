@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import './App.css';
+import './App.css'; 
+import { savePost, getPosts } from "./api/postApi";
 
 const KAKAO_JAVASCRIPT_KEY = process.env.REACT_APP_KAKAO_MAP_API_KEY;
 const KAKAO_LOCAL_REST_API_KEY = '68981317ed8a2b9ebbd6b31d3272644a';
@@ -355,26 +356,16 @@ function App() {
       return '';
     }
   });
-  const [posts, setPosts] = useState(() =>
-    readStorage(STORAGE_KEYS.posts, [
-      {
-        id: 'sample-1',
-        title: '시청 근처 점심 추천',
-        content: '오늘은 지도에서 찾은 식당 후보를 정리해봤어요.',
-        authorId: 'sample',
-        authorNickname: '운영자',
-        createdAt: '2026-04-30',
-      },
-      {
-        id: 'sample-2',
-        title: '가성비 좋은 한식집 모음',
-        content: '직장인 점심으로 갈 만한 곳들을 댓글로 같이 모아봐요.',
-        authorId: 'sample',
-        authorNickname: '운영자',
-        createdAt: '2026-04-30',
-      },
-    ])
-  );
+  useEffect(() => {
+    const loadPosts = async () => {
+      const data = await getPosts();
+
+      setPosts(data);
+    };
+
+    loadPosts();
+  }, []);
+  const [posts, setPosts] = useState([]);
   const [profileDraft, setProfileDraft] = useState({ nickname: '', bio: '' });
   const [postDraft, setPostDraft] = useState({ title: '', content: '' });
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
@@ -676,7 +667,7 @@ function App() {
     );
   };
 
-  const submitPost = (event) => {
+  const submitPost = async (event) => {
     event.preventDefault();
     if (!currentUser) return;
 
@@ -697,7 +688,10 @@ function App() {
       createdAt,
     };
 
+    await savePost(nextPost);
+
     setPosts((prevPosts) => [nextPost, ...prevPosts]);
+
     setSelectedItem(nextPost);
     setPostDraft({ title: '', content: '' });
     setModalType('communityDetail');
